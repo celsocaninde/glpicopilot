@@ -6,12 +6,12 @@
     <logo></logo>
     <description>
         <short>
-            <en>AI copilot for tickets: summaries, SLA insight, sentiment, guided diagnosis, KB drafts on solve, closing emails.</en>
-            <pt_BR>Copilot de IA para chamados: resumos, análise de SLA, sentimento, diagnóstico, rascunho de KB ao resolver e e-mail de encerramento.</pt_BR>
+            <en>AI copilot for GLPI 11 tickets: multi-provider summaries, SLA analysis, requester sentiment, guided diagnosis, KB drafts on solve, closing emails — Azure OpenAI, OpenAI, Groq, Grok, Gemini.</en>
+            <pt_BR>Copilot de IA para chamados GLPI 11: resumos multi-provedor, análise de SLA, sentimento do requerente, diagnóstico guiado, rascunho de KB ao resolver e e-mail de encerramento — Azure OpenAI, OpenAI, Groq, Grok e Gemini.</pt_BR>
         </short>
         <long>
-            <en>Multi-provider AI (Azure OpenAI, OpenAI, Groq, Grok, Gemini). SLA analysis, requester sentiment badge, side-panel diagnostic questions, automatic knowledge base draft when a ticket is solved, and optional closing email text.</en>
-            <pt_BR>IA multi-provedor. Análise de SLA, badge de sentimento do requerente, painel lateral de diagnóstico, rascunho de artigo na base de conhecimento ao marcar resolvido e texto de e-mail de encerramento.</pt_BR>
+            <en>GLPI Copilot integrates your service desk with major AI backends from a single configuration screen. Summarize ticket threads for handovers or audits; combine thread text with GLPI metadata for SLA risk assessment; show an automatic sentiment badge for the requester’s tone; generate diagnostic questions in a side panel; optionally create a draft Knowbase article when a ticket is solved (subject to permissions); and produce professional closing e-mail text with copy-to-clipboard. Supports Microsoft Azure OpenAI (deployment URL and api-key header), OpenAI-compatible APIs including Groq and xAI Grok (Bearer token, optional base URL and model), and Google Gemini via the Generative Language API (API key). Entity-based activation can be restricted. Requires GLPI 11 and PHP 8.2 or newer.</en>
+            <pt_BR>O GLPI Copilot liga o teu service desk a vários motores de IA a partir de uma única página de configuração. Resume o histórico do chamado para passagem de turno ou auditoria; cruza o texto do ticket com metadados GLPI para uma leitura de risco de SLA; mostra um badge automático de sentimento do requerente; gera perguntas de diagnóstico num painel lateral; pode criar um rascunho de artigo na base de conhecimento ao marcar o ticket como resolvido (conforme permissões); e produz texto de e-mail de encerramento profissional com botão para copiar. Suporta Microsoft Azure OpenAI (URL completa do deployment e cabeçalho api-key), APIs compatíveis com OpenAI incluindo Groq e xAI Grok (Bearer, URL base e modelo opcionais) e Google Gemini através da API Generative Language (chave). Permite restringir o uso por entidade. Requer GLPI 11 e PHP 8.2 ou superior.</pt_BR>
         </long>
     </description>
     <homepage>https://github.com/celsocaninde/glpicopilot</homepage>
@@ -38,6 +38,8 @@
             <tag>groq</tag>
             <tag>ticket</tag>
             <tag>sla</tag>
+            <tag>helpdesk</tag>
+            <tag>copilot</tag>
         </en>
     </tags>
 </root>

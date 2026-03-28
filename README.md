@@ -1,128 +1,174 @@
-# GLPI Copilot (`glpicopilot`)
+# ✨ GLPI Copilot · `glpicopilot`
 
-Plugin para **GLPI 11** que integra vários fornecedores de IA no fluxo de **chamados (tickets)**: resumos, análise de SLA, sentimento do requerente, diagnóstico guiado, rascunho de artigo na base de conhecimento ao resolver e texto de e-mail de encerramento.
+<p align="center">
+  <strong>🤖 Copilot de inteligência artificial para o teu Service Desk no GLPI 11</strong><br/>
+  <sub>Resumos · SLA · Sentimento · Diagnóstico · Base de conhecimento · E-mails · Multi-provedor</sub>
+</p>
 
-**Código-fonte:** [github.com/celsocaninde/glpicopilot](https://github.com/celsocaninde/glpicopilot)
+---
+
+## 🎯 O que é isto?
+
+O **GLPI Copilot** é um plugin **open source** ([GPLv3+](https://www.gnu.org/licenses/gpl-3.0.html)) que liga o teu **GLPI 11** a vários motores de IA (**Microsoft Azure OpenAI**, **OpenAI**, **Groq**, **xAI Grok**, **Google Gemini**). Tudo num só sítio de configuração: escolhes o provedor, a chave e — quando faz sentido — o endpoint e o modelo.
+
+👉 O foco é o **dia a dia do técnico** na ficha do **chamado (ticket)**: menos tempo a ler tópicos longos, mais contexto sobre **prazos e SLA**, melhor leitura do **tom do requerente**, **perguntas de diagnóstico** sugeridas pela IA, **rascunhos de artigo** para a base de conhecimento quando o problema fica resolvido, e **textos de e-mail** prontos a copiar — incluindo o encerramento.
+
+📦 **Código-fonte:** [github.com/celsocaninde/glpicopilot](https://github.com/celsocaninde/glpicopilot)
 
 | | |
-|---|---|
-| **GLPI** | 11.0 – 11.99 |
-| **PHP** | ≥ 8.2 |
-| **Versão do plugin** | 1.2.0 |
-| **Licença** | GPLv3+ |
+|:---|:---|
+| 🖥️ **GLPI** | `11.0` – `11.99` |
+| 🐘 **PHP** | `≥ 8.2` |
+| 📌 **Versão do plugin** | `1.2.0` |
+| ⚖️ **Licença** | **GPLv3+** |
 
 ---
 
-## Funcionalidades
+## 🚀 Para quem é?
 
-| Funcionalidade | Descrição |
-|----------------|-----------|
-| **Resumo do chamado** | Botão na barra de ações do ticket para gerar um resumo do título, descrição e follow-ups. |
-| **Multi-provider** | Azure OpenAI, OpenAI, Groq, xAI Grok e Google Gemini — configurável na página do plugin. |
-| **Análise de SLA** | A IA analisa histórico + metadados GLPI (prazos, prioridade, etc.) e indica risco de violação de SLA. |
-| **Sentimento** | Badge com classificação aproximada do tom do requerente (frustrado / neutro / satisfeito). |
-| **Diagnóstico guiado** | Lista de perguntas sugeridas pela IA; painel lateral para leitura. |
-| **Base de conhecimento** | Ao passar o ticket para **Resolvido**, é criado um rascunho de artigo (`KnowbaseItem`) com prefixo `[Draft AI]`. |
-| **E-mail de encerramento** | Texto profissional gerado ao resolver (também disponível sob demanda) e botão **Copiar**. |
-| **Sugestão de resposta** | Endpoint AJAX `ajax/suggest_reply.php` para sugerir resposta ao requerente (conforme integração). |
-
-### Restrição por entidade
-
-Na configuração é possível limitar o plugin a entidades específicas (`allowed_entities` em JSON). Vazio = todas as entidades.
+- 👷 **Técnicos e analistas** que querem um resumo rápido do histórico sem abrir dezenas de follow-ups.
+- 📊 **Gestores de serviço** que precisam de uma visão **rápida de risco de SLA** (com contexto do próprio GLPI).
+- 🏢 **Equipas** que já usam ou querem testar **vários fornecedores de IA** sem mudar de plugin.
+- 📚 **Equipas de conhecimento** que querem **sementes de artigos KB** geradas a partir de tickets resolvidos (revisão humana continua essencial).
 
 ---
 
-## Instalação
+## 🧩 O que o plugin faz (em detalhe)
 
-1. Copie a pasta do plugin para o diretório de plugins do GLPI:
+### 📝 Resumo inteligente do chamado
+- Botão na **barra de ações** do ticket (alinhado com o fluxo GLPI).
+- A IA lê **título, descrição e follow-ups** e devolve um **resumo em texto** (até ~3 parágrafos curtos), no idioma do ticket quando possível.
+- Ideal para **passagem de turno**, auditoria rápida ou onboarding de alguém novo no ticket.
+
+### 🔌 Multi-provedor (uma configuração, vários motores)
+- **Azure OpenAI** — URL completa do deployment + cabeçalho `api-key`.
+- **OpenAI / Groq / Grok** — API estilo OpenAI (`Bearer` + `/chat/completions`), com **base URL opcional** e lista de **modelos** em dropdown.
+- **Gemini (Google AI Studio)** — chave na query; endpoint fixo na API Generative Language (campo de URL ignorado).
+- Na página de configuração: **dicas por provedor**, **badges** (obrigatório / opcional / não usado) e **restrição por entidade** (`allowed_entities`).
+
+### ⏱️ Análise de SLA
+- Usa o **histórico do ticket** + **metadados GLPI** (estado, urgência, prioridade, impacto, prazos quando existem nos campos).
+- A IA devolve uma leitura de **risco** (baixo / médio / alto) e **sugestões de próximos passos** para o técnico.
+- Clica em **«Analisar SLA»** e o resultado aparece na área de alertas, com **Copiar**.
+
+### 😠😐🙂 Sentimento do requerente
+- **Badge** carregado automaticamente ao abrir o ticket (classificação aproximada: frustrado / neutro / satisfeito).
+- Baseado no texto do requerente no thread — não substitui conversa humana, mas dá **contexto emocional** rápido.
+
+### 🩺 Diagnóstico guiado
+- Gera **5–7 perguntas** que o técnico pode usar para aprofundar (logs, configurações, verificações sim/não).
+- Abre num **painel lateral** (drawer) para não poluir o formulário principal.
+
+### 📚 Base de conhecimento (rascunho automático)
+- Quando o ticket passa a **Resolvido**, o plugin pode:
+  - Pedir à IA um **título + corpo** em JSON.
+  - Criar um **`KnowbaseItem`** com prefixo **`[Draft AI]`** para revisão humana.
+- Evita duplicar: regista metadados em `glpi_plugin_glpicopilot_ticketmeta`.
+- Requer **permissões** para criar artigos na KB no GLPI.
+
+### ✉️ E-mail de encerramento
+- **Ao resolver** pode ser gerado um texto de e-mail profissional; na **próxima visualização** do ticket aparece um alerta (sessão).
+- Botão **«E-mail encerramento»** gera de novo **sob demanda**.
+- Todos os blocos longos têm **Copiar** para colar no cliente ou no modelo de notificação.
+
+### 💬 Sugestão de resposta (API)
+- Endpoint `ajax/suggest_reply.php` — corpo sugerido para responder ao requerente, com base no thread (integração conforme a tua UI).
+
+---
+
+## ⚙️ Configuração rápida (por provedor)
+
+| Campo | ☁️ Azure | 🤖 OpenAI / Groq / Grok | ✨ Gemini |
+|--------|----------|-------------------------|-----------|
+| **Endpoint** | ✅ Obrigatório: URL **completa** do deployment (`…/chat/completions` + `api-version`). | ⭕ Opcional: só `…/v1` (sem `/chat/completions`). | ➖ Não usado (API Google fixa). |
+| **Modelo** | ➖ Definido pelo deployment. | ⭕ Dropdown + “Default”. | ⭕ Dropdown + “Default”. |
+| **Chave** | `api-key` | `Bearer` | `key=` na query |
+
+🔐 As chaves ficam na **base de dados** do GLPI — trata backups e perfis de admin com rigor.
+
+---
+
+## 📥 Instalação
+
+1. Clona ou copia a pasta para:
    ```text
    GLPI_ROOT/plugins/glpicopilot/
    ```
-2. No GLPI: **Configurar → Plugins**, localize **GLPI Copilot** e **instalar** e **ativar**.
-3. Na primeira execução são criadas/atualizadas as tabelas:
-   - `glpi_plugin_glpicopilot_config`
-   - `glpi_plugin_glpicopilot_ticketmeta` (metadados por ticket, ex.: KB já criado)
+2. No GLPI: **Configurar → Plugins** → **Instalar** e **Ativar** o **GLPI Copilot**.
+3. Tabelas criadas/atualizadas automaticamente (`config` + `ticketmeta`).
 
-Se atualizar de uma versão antiga, use **Atualizar** na lista de plugins para aplicar migrações.
+Atualizações futuras: usa **Atualizar** na lista de plugins para migrações.
 
 ---
 
-## Configuração
+## 🎮 Uso no ticket
 
-**Configurar → Plugins → GLPI Copilot** (ou o caminho indicado pelo GLPI).
-
-| Campo | Azure OpenAI | OpenAI / Groq / Grok | Gemini |
-|-------|----------------|----------------------|--------|
-| **Endpoint / URL** | Obrigatório: URL **completa** do deployment (`…/chat/completions` + `api-version` na query). | Opcional: só a **base** `…/v1` (sem `/chat/completions`). | Não usado (URL fixa na API Google). |
-| **Modelo** | Não usado (deployment na URL). | Lista em dropdown + opção “Default”. | Lista em dropdown. |
-| **Chave** | Cabeçalho `api-key`. | `Authorization: Bearer`. | Parâmetro `key=` na query (Google AI Studio). |
-
-Guarde as chaves com cuidado: ficam na **base de dados** do GLPI.
-
----
-
-## Uso no ticket
-
-Na ficha do chamado (com permissão de visualização):
-
-- **Resumir** — gera resumo na área abaixo do botão.
-- **Analisar SLA**, **Diagnóstico**, **E-mail encerramento** — resultados na pilha de alertas; textos longos têm **Copiar**.
-- **Sentimento** — carregado automaticamente no badge.
-- Ao **resolver** o ticket: se configurado e com permissões, pode ser criado o rascunho na KB e mostrado o e-mail de encerramento na próxima visualização.
+| Ação | O que acontece |
+|------|----------------|
+| ✨ **Resumir** | Resumo abaixo do botão. |
+| ⏱️ **Analisar SLA** | Análise na pilha de alertas + Copiar. |
+| 🩺 **Diagnóstico** | Perguntas no painel lateral. |
+| ✉️ **E-mail encerramento** | Texto na pilha + Copiar. |
+| 😊 **Sentimento** | Badge automático. |
+| ✅ **Marcar Resolvido** | Opcional: rascunho KB + e-mail de encerramento na sessão. |
 
 ---
 
-## Segurança e boas práticas
+## 🛡️ Segurança
 
-- Restrinja **quem pode alterar configuração** do plugin (perfil GLPI).
-- Proteja **backups** da BD (API keys em texto).
-- Valide **entidades** se o plugin não deve correr em todas.
+- Restringe quem pode **configurar** o plugin.
+- Protege **backups** (API keys em claro na BD).
+- Usa **entidades permitidas** se não quiseres o Copilot em todas as entidades.
 
 ---
 
-## Estrutura do projeto
+## 📂 Estrutura do código
 
 ```text
 glpicopilot/
-├── setup.php              # Versão, hooks, init
-├── hook.php               # UI no ticket, migrações, hooks item_update
-├── glpicopilot.xml        # Metadados marketplace GLPI
-├── front/config.form.php  # Página de configuração
+├── setup.php              # Versão, hooks
+├── hook.php               # UI no ticket, migrações, hooks de update
+├── glpicopilot.xml        # Metadados GLPI
+├── front/config.form.php  # Configuração
 ├── ajax/
-│   ├── summary.php        # Resumo
+│   ├── summary.php
 │   ├── copilot.php        # SLA, sentimento, diagnóstico, e-mail
-│   └── suggest_reply.php  # Sugestão de resposta
+│   └── suggest_reply.php
 ├── inc/
 │   ├── config.class.php
-│   ├── summarizer.class.php  # Chamadas à API (OpenAI-compat + Gemini)
-│   ├── ticketintel.class.php # Contexto SLA
-│   └── kb.class.php          # KB ao resolver + e-mail em sessão
-├── js/ / css/            # Assets auxiliares
+│   ├── summarizer.class.php
+│   ├── ticketintel.class.php
+│   └── kb.class.php
+├── js/  ·  css/
 └── README.md
 ```
 
 ---
 
-## Repositório Git
+## 🔗 Repositório
 
-O projeto está em **[github.com/celsocaninde/glpicopilot](https://github.com/celsocaninde/glpicopilot)**.
-
-Para clonar:
+**[github.com/celsocaninde/glpicopilot](https://github.com/celsocaninde/glpicopilot)**
 
 ```bash
 git clone https://github.com/celsocaninde/glpicopilot.git
 ```
 
-Coloque a pasta `glpicopilot` em `GLPI_ROOT/plugins/`. Para contribuir com fork ou outro remoto, use o fluxo habitual (`git remote add`, `git push`).
+---
+
+## 💡 Texto sugerido para a descrição do repositório no GitHub
+
+> Copilot de IA para GLPI 11: resumos de tickets, análise de SLA, sentimento do requerente, diagnóstico guiado, rascunhos de KB ao resolver e e-mails de encerramento — Azure OpenAI, OpenAI, Groq, Grok e Gemini.
+
+*(Cole em **Settings → General → About** no repositório.)*
 
 ---
 
-## English summary
+## 🌐 English summary
 
-**GLPI Copilot** is a GLPI 11 plugin that connects multiple AI backends (Azure OpenAI, OpenAI, Groq, Grok, Gemini) to tickets: summaries, SLA risk insight, requester sentiment badge, guided diagnostic questions, optional **KnowbaseItem** draft on solve, and closing e-mail text with copy-to-clipboard. Configure the provider under **Setup → Plugins**, install/update database tables from the plugin UI, and restrict by entity if needed. Licensed under **GPLv3+**.
+**GLPI Copilot** is a **GLPI 11** plugin that connects **Azure OpenAI, OpenAI, Groq, xAI Grok, and Google Gemini** to your helpdesk workflow: **ticket summaries**, **SLA risk insight**, **requester sentiment** badge, **guided diagnostic** questions in a side panel, optional **[Draft AI] KnowbaseItem** on solve, and **closing e-mail** text with **copy-to-clipboard**. Configure once under **Setup → Plugins**, restrict by **entity** if needed. **GPLv3+**.
 
 ---
 
-## Licença
+## ⚖️ Licença
 
-Este projeto está licenciado nos termos da **GNU General Public License v3 ou superior** (GPLv3+), em linha com o ecossistema GLPI.
+GNU **General Public License v3 or later** (GPLv3+), aligned with the GLPI ecosystem.
