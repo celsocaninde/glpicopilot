@@ -14,7 +14,7 @@
             <pt_BR>IA multi-provedor. Análise de SLA, badge de sentimento do requerente, painel lateral de diagnóstico, rascunho de artigo na base de conhecimento ao marcar resolvido e texto de e-mail de encerramento.</pt_BR>
         </long>
     </description>
-    <homepage></homepage>
+    <homepage>https://github.com/celsocaninde/glpicopilot</homepage>
     <download></download>
     <authors>
         <author>GLPI Copilot</author>
