@@ -2,6 +2,8 @@
 
 Plugin para **GLPI 11** que integra vários fornecedores de IA no fluxo de **chamados (tickets)**: resumos, análise de SLA, sentimento do requerente, diagnóstico guiado, rascunho de artigo na base de conhecimento ao resolver e texto de e-mail de encerramento.
 
+**Código-fonte:** [github.com/celsocaninde/glpicopilot](https://github.com/celsocaninde/glpicopilot)
+
 | | |
 |---|---|
 | **GLPI** | 11.0 – 11.99 |
@@ -101,35 +103,17 @@ glpicopilot/
 
 ---
 
-## Enviar para o GitHub
+## Repositório Git
 
-No diretório do plugin:
+O projeto está em **[github.com/celsocaninde/glpicopilot](https://github.com/celsocaninde/glpicopilot)**.
 
-```bash
-git init
-git add .
-git commit -m "Initial commit: GLPI Copilot plugin v1.2.0"
-```
-
-Crie um repositório vazio em [github.com/new](https://github.com/new) (ex.: `glpicopilot`), depois:
+Para clonar:
 
 ```bash
-git branch -M main
-git remote add origin https://github.com/SEU_USUARIO/glpicopilot.git
-git push -u origin main
+git clone https://github.com/celsocaninde/glpicopilot.git
 ```
 
-Substitua `SEU_USUARIO` e o nome do repositório. Se usar **SSH**:
-
-```bash
-git remote add origin git@github.com:SEU_USUARIO/glpicopilot.git
-```
-
-Com [GitHub CLI](https://cli.github.com/) (`gh auth login` feito):
-
-```bash
-gh repo create glpicopilot --public --source=. --remote=origin --push
-```
+Coloque a pasta `glpicopilot` em `GLPI_ROOT/plugins/`. Para contribuir com fork ou outro remoto, use o fluxo habitual (`git remote add`, `git push`).
 
 ---
 
