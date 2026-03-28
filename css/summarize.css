@@ -1,0 +1,55 @@
+/* =========================================================
+   GLPI Copilot — summarize.css
+   Estilos do botão "Resumir chamado" no formulário de ticket.
+   ========================================================= */
+
+/* Raiz geral */
+.glpicopilot-root {
+    width: 100%;
+}
+
+.glpicopilot-root--toolbar {
+    width: auto;
+    max-width: 18rem;
+}
+
+/* Painel compacto quando está na barra de ações legacy (GLPI 10) */
+.legacy-timeline-actions .glpicopilot-timeline-item .glpicopilot-panel {
+    margin-bottom: 0;
+}
+
+/* Painel genérico (GLPI 11 e fallback JS) */
+.glpicopilot-panel {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Botão alinhado à barra de ações do ITIL (mesmo padrão .btn.btn-primary.answer-action) */
+.glpicopilot-btn {
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 500;
+}
+
+.glpicopilot-btn .ti {
+    font-size: 1.1em;
+    line-height: 1;
+    opacity: 0.95;
+}
+
+.legacy-timeline-actions .glpicopilot-timeline-item .glpicopilot-btn,
+.itil-footer .glpicopilot-timeline-item .glpicopilot-btn {
+    min-height: calc(1.5em + 0.75rem);
+    padding: 0.5rem 0.85rem;
+}
+
+/* Caixa de saída do resumo */
+.glpicopilot-output {
+    white-space: pre-wrap;
+    max-width: 60ch;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}

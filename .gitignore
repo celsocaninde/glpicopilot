@@ -1,0 +1,16 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.code-workspace
+
+# PHP / Composer (se no futuro existir)
+/vendor/
+composer.lock
+
+# Logs locais
+*.log

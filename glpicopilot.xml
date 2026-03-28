@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <name>GLPI Copilot</name>
+    <key>glpicopilot</key>
+    <state>stable</state>
+    <logo></logo>
+    <description>
+        <short>
+            <en>AI copilot for tickets: summaries, SLA insight, sentiment, guided diagnosis, KB drafts on solve, closing emails.</en>
+            <pt_BR>Copilot de IA para chamados: resumos, análise de SLA, sentimento, diagnóstico, rascunho de KB ao resolver e e-mail de encerramento.</pt_BR>
+        </short>
+        <long>
+            <en>Multi-provider AI (Azure OpenAI, OpenAI, Groq, Grok, Gemini). SLA analysis, requester sentiment badge, side-panel diagnostic questions, automatic knowledge base draft when a ticket is solved, and optional closing email text.</en>
+            <pt_BR>IA multi-provedor. Análise de SLA, badge de sentimento do requerente, painel lateral de diagnóstico, rascunho de artigo na base de conhecimento ao marcar resolvido e texto de e-mail de encerramento.</pt_BR>
+        </long>
+    </description>
+    <homepage></homepage>
+    <download></download>
+    <authors>
+        <author>GLPI Copilot</author>
+    </authors>
+    <versions>
+        <version>
+            <num>1.2.0</num>
+            <compatibility>11.0</compatibility>
+        </version>
+    </versions>
+    <langs>
+        <lang>en_GB</lang>
+        <lang>pt_BR</lang>
+    </langs>
+    <license>GPLv3+</license>
+    <tags>
+        <en>
+            <tag>ai</tag>
+            <tag>openai</tag>
+            <tag>gemini</tag>
+            <tag>groq</tag>
+            <tag>ticket</tag>
+            <tag>sla</tag>
+        </en>
+    </tags>
+</root>
