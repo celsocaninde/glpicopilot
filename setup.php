@@ -10,7 +10,7 @@ if (!defined('GLPI_ROOT')) {
     die('Sorry. You can\'t access directly to this file');
 }
 
-define('PLUGIN_GLPICOPILOT_VERSION', '1.2.0');
+define('PLUGIN_GLPICOPILOT_VERSION', '1.3.0');
 
 /**
  * Define the plugin's version code
@@ -20,7 +20,7 @@ function plugin_version_glpicopilot(): array
     return [
         'name'           => __('GLPI Copilot (multi-provider AI)', 'glpicopilot'),
         'version'        => PLUGIN_GLPICOPILOT_VERSION,
-        'author'         => 'GLPI Copilot',
+        'author'         => 'Celso Caninde',
         'license'        => 'GPLv3+',
         'homepage'       => '',
         'requirements'   => [
@@ -36,7 +36,11 @@ function plugin_version_glpicopilot(): array
 }
 
 /**
- * GLPI 11: runs before session; keep minimal.
+ * GLPI 11: não usar registerPluginStatelessPath nestes AJAX.
+ * Em paths stateless o Kernel desliga cookies e não chama Session::start(); só corre initVars(),
+ * pelo que glpicsrftokens não reflete a sessão real e Session::checkCSRF falha no script.
+ *
+ * Solução: pedidos com X-Requested-With: XMLHttpRequest + X-Glpi-Csrf-Token (CheckCsrfListener).
  */
 function plugin_glpicopilot_boot(): void
 {
@@ -63,7 +67,13 @@ function plugin_init_glpicopilot(): void
     $PLUGIN_HOOKS['item_update']['glpicopilot']   = 'plugin_glpicopilot_item_update';
 
     $PLUGIN_HOOKS['csrf_compliant']['glpicopilot'] = true;
-    $PLUGIN_HOOKS['config_page']['glpicopilot']    = 'front/config.form.php';
+    $PLUGIN_HOOKS['config_page']['glpicopilot']    = 'front/config.php';
+
+    Plugin::registerClass('PluginGlpicopilotConfig');
+    Plugin::registerClass('PluginGlpicopilotMenu');
+    $PLUGIN_HOOKS['menu_toadd']['glpicopilot'] = [
+        'tools' => 'PluginGlpicopilotMenu',
+    ];
 
     // GLPI 10/11: timeline_actions injeta botões na barra de ações do timeline.
     $PLUGIN_HOOKS['timeline_actions']['glpicopilot'] = 'plugin_glpicopilot_timeline_actions';

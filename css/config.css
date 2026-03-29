@@ -384,6 +384,27 @@
 }
 
 /* Requisitos por provedor + campos ignorados */
+.glpicopilot-provider-details__summary {
+    cursor: pointer;
+    user-select: none;
+    color: var(--glpicopilot-blue-muted, #5a7aa8);
+    font-size: 0.875rem;
+    font-weight: 600;
+    list-style: none;
+}
+
+.glpicopilot-provider-details__summary::-webkit-details-marker {
+    display: none;
+}
+
+.glpicopilot-provider-details[open] .glpicopilot-provider-details__summary {
+    margin-bottom: 0.25rem;
+}
+
+.glpicopilot-endpoint-reveal .btn-link {
+    font-weight: 600;
+}
+
 .glpicopilot-provider-requirements {
     margin-top: 0.35rem;
     margin-bottom: 1rem;
@@ -409,6 +430,66 @@
     font-weight: 600;
     vertical-align: middle;
     font-size: 0.7rem;
+}
+
+/* Cartão “configuração atual” (resumo só leitura) */
+.glpicopilot-config-summary {
+    border: 1px solid rgba(61, 125, 214, 0.35);
+    border-radius: 0.75rem;
+    background: linear-gradient(
+        165deg,
+        rgba(228, 238, 252, 0.65),
+        rgba(255, 255, 255, 0.95)
+    );
+    box-shadow: 0 2px 12px rgba(26, 95, 191, 0.08);
+}
+
+.glpicopilot-config-summary__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(61, 125, 214, 0.2);
+}
+
+.glpicopilot-config-summary__title {
+    font-weight: 600;
+    color: var(--glpicopilot-blue-dark, #0f3d73);
+}
+
+.glpicopilot-config-summary__badge {
+    font-weight: 500;
+    font-size: 0.7rem;
+}
+
+.glpicopilot-config-summary__dl dt {
+    font-weight: 600;
+    color: var(--glpicopilot-blue-muted, #5a7aa8);
+    padding-top: 0.35rem;
+}
+
+.glpicopilot-config-summary__dl dd {
+    padding-top: 0.35rem;
+    word-break: break-word;
+}
+
+.glpicopilot-config-summary__code {
+    font-size: 0.9em;
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.25rem;
+    background: rgba(61, 125, 214, 0.08);
+}
+
+.glpicopilot-config-summary__entity-list {
+    padding-left: 1.25rem;
+    margin: 0;
+}
+
+.glpicopilot-config-summary__scope-all {
+    font-weight: 600;
+    color: var(--glpicopilot-blue, #1a5fbf);
 }
 
 @media (prefers-reduced-motion: reduce) {

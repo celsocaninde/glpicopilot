@@ -1,4 +1,4 @@
-/* global document, window, fetch, FormData, MutationObserver */
+/* global document, window, fetch, URLSearchParams, MutationObserver */
 (function () {
     'use strict';
 
@@ -8,9 +8,10 @@
     function getCsrfToken() {
         // GLPI 11: múltiplos campos possíveis
         var selectors = [
+            'meta[name="glpi-csrf-token"]',
             'input[name="_glpi_csrf_token"]',
             'input[name="glpi_csrf_token"]',
-            'meta[name="glpi-csrf-token"]',
+            'input[name="csrf_token"]',
         ];
         var i, el;
         for (i = 0; i < selectors.length; i++) {
@@ -70,10 +71,10 @@
             relocateNearFollowups(root);
         }
 
-        var labelSummarize    = root.getAttribute('data-label-summarize')    || '✨ Resumir chamado';
-        var labelLoading      = root.getAttribute('data-label-loading')      || 'Gerando resumo…';
-        var labelError        = root.getAttribute('data-label-error')        || 'Erro ao gerar resumo.';
-        var labelNotConfigured = root.getAttribute('data-label-not-configured') || 'Plugin não configurado.';
+        var labelSummarize    = root.getAttribute('data-label-summarize')    || '✨ Summarize ticket';
+        var labelLoading      = root.getAttribute('data-label-loading')      || 'Generating summary…';
+        var labelError        = root.getAttribute('data-label-error')        || 'Could not generate the summary.';
+        var labelNotConfigured = root.getAttribute('data-label-not-configured') || 'Plugin not configured (URL / API key).';
 
         var labelText = String(labelSummarize).replace(/^\s*✨\s*/, '').trim();
         if (!labelText) {
@@ -117,15 +118,19 @@
             btn.disabled = true;
             showMessage(out, 'alert-secondary', labelLoading, false);
 
-            var fd = new FormData();
-            fd.append('_glpi_csrf_token', token);
-            fd.append('tickets_id',      ticketId);
+            var body = new URLSearchParams();
+            body.set('_glpi_csrf_token', token);
+            body.set('tickets_id', String(ticketId));
 
             fetch(base + '/ajax/summary.php', {
                 method: 'POST',
-                body: fd,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-Glpi-Csrf-Token': token,
+                },
+                body: body.toString(),
                 credentials: 'same-origin',
-                headers: { 'X-Requested-With': 'XMLHttpRequest' },
             })
                 .then(function (r) {
                     return r.json().then(function (data) {

@@ -1,0 +1,325 @@
+# GLPI Copilot plugin — Português (Brasil)
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Copilot 1.3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-29 12:00+0000\n"
+"PO-Revision-Date: 2026-03-29 12:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Portuguese (Brazil)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "AI configuration profile"
+msgid_plural "AI configuration profiles"
+msgstr[0] "Perfil de configuração de IA"
+msgstr[1] "Perfis de configuração de IA"
+
+msgid "GLPI Copilot (multi-provider AI)"
+msgstr "GLPI Copilot (IA multi-provedor)"
+
+msgid "AI Assistant"
+msgstr "IA Assistente"
+
+msgid "AI Assistant — profiles"
+msgstr "IA Assistente — perfis"
+
+msgid "Add profile"
+msgstr "Adicionar perfil"
+
+msgid "Plugin tables are missing. Enable or reinstall the GLPI Copilot plugin."
+msgstr "As tabelas do plugin estão em falta. Ative ou reinstale o GLPI Copilot."
+
+msgid "Configuration saved."
+msgstr "Configuração guardada."
+
+msgid "Could not save configuration."
+msgstr "Não foi possível guardar a configuração."
+
+msgid "Profile not found."
+msgstr "Perfil não encontrado."
+
+msgid "Back to list"
+msgstr "Voltar à lista"
+
+msgid "Defined by deployment URL (Azure)"
+msgstr "Definido pelo URL de deployment (Azure)"
+
+msgid "Provider details (optional)"
+msgstr "Detalhes do provedor (opcional)"
+
+msgid "Show optional base URL field"
+msgstr "Mostrar campo de URL base opcional"
+
+msgid "saved value"
+msgstr "valor guardado"
+
+msgid "Current configuration"
+msgstr "Configuração atual"
+
+msgid "Read-only"
+msgstr "Só leitura"
+
+msgid "Summary of this profile: only the profile marked as active is used on tickets and AI actions."
+msgstr "Resumo deste perfil: só o perfil marcado como ativo é usado nos chamados e nas ações de IA."
+
+msgid "AI provider"
+msgstr "Provedor de IA"
+
+msgid "Model"
+msgstr "Modelo"
+
+msgid "Endpoint / base URL"
+msgstr "Endpoint / URL base"
+
+msgid "API key"
+msgstr "Chave API"
+
+msgid "Configured (hidden)"
+msgstr "Configurada (oculta)"
+
+msgid "Not set"
+msgstr "Não definida"
+
+msgid "Ticket scope (entities)"
+msgstr "Âmbito dos chamados (entidades)"
+
+msgid "All entities"
+msgstr "Todas as entidades"
+
+msgid "AI actions are available on tickets in every entity."
+msgstr "As ações de IA estão disponíveis em chamados de todas as entidades."
+
+msgid "Same provider and model; only tickets in these entities show the AI controls."
+msgstr "Mesmo provedor e modelo; só os chamados nestas entidades mostram os controlos de IA."
+
+msgid "AI integration"
+msgstr "Integração de IA"
+
+msgid "Ticket summaries"
+msgstr "Resumos de chamados"
+
+msgid "Multi-provider"
+msgstr "Multi-provedor"
+
+msgid "Profile name"
+msgstr "Nome do perfil"
+
+msgid "Active for tickets (only one profile can be active)"
+msgstr "Ativo para chamados (só um perfil pode estar ativo)"
+
+msgid "Pick a provider: fields that do not apply are hidden. Only these settings are used for ticket AI features."
+msgstr "Escolha um provedor: os campos que não se aplicam ficam ocultos. Estas definições são as usadas nas funcionalidades de IA dos chamados."
+
+msgid "Provider requirements"
+msgstr "Requisitos do provedor"
+
+msgid "Stored in the GLPI database. Restrict DB and backups accordingly."
+msgstr "Armazenada na base de dados do GLPI. Proteja a base e as cópias de segurança em conformidade."
+
+msgid "Allowed entities"
+msgstr "Entidades permitidas"
+
+msgid "Optional"
+msgstr "Opcional"
+
+msgid "Select the entities where the AI button appears on tickets. Leave empty to enable in <strong>all entities</strong>."
+msgstr "Selecione as entidades onde o botão de IA será exibido nos chamados. Deixe em branco para ativar em <strong>todas as entidades</strong>."
+
+msgid "GLPI Copilot"
+msgstr "GLPI Copilot"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Summarize ticket"
+msgstr "Resumir chamado"
+
+msgid "Summarize"
+msgstr "Resumir"
+
+msgid "Generating summary…"
+msgstr "A gerar resumo…"
+
+msgid "Could not generate the summary."
+msgstr "Não foi possível gerar o resumo."
+
+msgid "Plugin not configured (URL / API key)."
+msgstr "Plugin não configurado (URL / chave API)."
+
+msgid "Analyze SLA"
+msgstr "Analisar SLA"
+
+msgid "Diagnosis"
+msgstr "Diagnóstico"
+
+msgid "Closing email"
+msgstr "E-mail de encerramento"
+
+msgid "Sentiment"
+msgstr "Sentimento"
+
+msgid "Copilot: error contacting the AI."
+msgstr "Copilot: erro ao contactar a IA."
+
+msgid "Closing email (generated when resolving)"
+msgstr "E-mail de encerramento (gerado ao resolver)"
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "Copied!"
+msgstr "Copiado!"
+
+msgid "SLA"
+msgstr "SLA"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "New profile"
+msgstr "Novo perfil"
+
+msgid "Unnamed profile"
+msgstr "Perfil sem nome"
+
+msgid "Active for tickets"
+msgstr "Ativo nos chamados"
+
+msgid "Microsoft Azure OpenAI"
+msgstr "Microsoft Azure OpenAI"
+
+msgid "Paste the full deployment URL below. The model is defined by the deployment — the model field is not used."
+msgstr "Cole abaixo o URL completo do deployment. O modelo é definido pelo deployment — o campo de modelo não é usado."
+
+msgid "Paste the full URL from Azure (must include …/chat/completions and usually api-version=…). Not a “base URL” only."
+msgstr "Cole o URL completo do Azure (deve incluir …/chat/completions e normalmente api-version=…). Não é apenas uma “URL base”."
+
+msgid "Ignored: the deployment in the URL defines the model."
+msgstr "Ignorado: o deployment no URL define o modelo."
+
+msgid "Required"
+msgstr "Obrigatório"
+
+msgid "Not used"
+msgstr "Não usado"
+
+msgid "Endpoint: required — full deployment URL (…/deployments/{name}/chat/completions?api-version=…). Authentication uses header api-key (Azure key), not Bearer."
+msgstr "Endpoint: obrigatório — URL completo do deployment (…/deployments/{name}/chat/completions?api-version=…). A autenticação usa o cabeçalho api-key (chave Azure), não Bearer."
+
+msgid "Model: not used — leave empty."
+msgstr "Modelo: não usado — deixe vazio."
+
+msgid "OpenAI"
+msgstr "OpenAI"
+
+msgid "API key and model below. The base URL field appears only if you need a custom endpoint (defaults to OpenAI)."
+msgstr "Chave API e modelo abaixo. O campo de URL base só aparece se precisar de um endpoint personalizado (por defeito é o da OpenAI)."
+
+msgid "Default (gpt-5.4-mini)"
+msgstr "Padrão (gpt-5.4-mini)"
+
+msgid "Optional: API base only, without /chat/completions. Example: https://api.openai.com/v1 — empty uses that default."
+msgstr "Opcional: só a base da API, sem /chat/completions. Exemplo: https://api.openai.com/v1 — vazio usa esse padrão."
+
+msgid "Pick a model from the list (or your saved custom id)."
+msgstr "Escolha um modelo da lista (ou o id personalizado guardado)."
+
+msgid "Endpoint: optional — only the API base (…/v1). The plugin appends /chat/completions. Empty: https://api.openai.com/v1"
+msgstr "Endpoint: opcional — só a base da API (…/v1). O plugin acrescenta /chat/completions. Vazio: https://api.openai.com/v1"
+
+msgid "Model: optional — defaults to gpt-5.4-mini if empty (see OpenAI model docs for the latest IDs)."
+msgstr "Modelo: opcional — por defeito gpt-5.4-mini se vazio (veja a documentação OpenAI para os IDs mais recentes)."
+
+msgid "API key: OpenAI secret key (Authorization: Bearer)."
+msgstr "Chave API: chave secreta OpenAI (Authorization: Bearer)."
+
+msgid "Groq"
+msgstr "Groq"
+
+msgid "API key and model below. Show the base URL field only if you use a non-default Groq endpoint."
+msgstr "Chave API e modelo abaixo. Mostre o campo de URL base só se usar um endpoint Groq não padrão."
+
+msgid "Default (llama-3.3-70b-versatile)"
+msgstr "Padrão (llama-3.3-70b-versatile)"
+
+msgid "Optional: base URL only (…/v1). Empty: https://api.groq.com/openai/v1"
+msgstr "Opcional: só URL base (…/v1). Vazio: https://api.groq.com/openai/v1"
+
+msgid "Pick a model from the list."
+msgstr "Escolha um modelo da lista."
+
+msgid "Endpoint: optional — OpenAI-compatible base only. Empty: https://api.groq.com/openai/v1"
+msgstr "Endpoint: opcional — só base compatível com OpenAI. Vazio: https://api.groq.com/openai/v1"
+
+msgid "Model: optional — defaults to llama-3.3-70b-versatile; see Groq “Supported Models” for current IDs."
+msgstr "Modelo: opcional — por defeito llama-3.3-70b-versatile; veja os “Supported Models” da Groq para os IDs atuais."
+
+msgid "API key: Groq API key (Bearer)."
+msgstr "Chave API: chave Groq (Bearer)."
+
+msgid "xAI Grok"
+msgstr "xAI Grok"
+
+msgid "API key and model below. Show the base URL field only if you need a custom xAI base URL."
+msgstr "Chave API e modelo abaixo. Mostre o campo de URL base só se precisar de uma URL base xAI personalizada."
+
+msgid "Default (grok-4-1-fast-non-reasoning)"
+msgstr "Padrão (grok-4-1-fast-non-reasoning)"
+
+msgid "Optional: base URL only (…/v1). Empty: https://api.x.ai/v1"
+msgstr "Opcional: só URL base (…/v1). Vazio: https://api.x.ai/v1"
+
+msgid "Endpoint: optional — OpenAI-compatible base only. Empty: https://api.x.ai/v1"
+msgstr "Endpoint: opcional — só base compatível com OpenAI. Vazio: https://api.x.ai/v1"
+
+msgid "Model: optional — defaults to grok-4-1-fast-non-reasoning; see xAI Models docs for the latest IDs."
+msgstr "Modelo: opcional — por defeito grok-4-1-fast-non-reasoning; veja a documentação de modelos xAI para os IDs mais recentes."
+
+msgid "API key: xAI API key (Bearer)."
+msgstr "Chave API: chave xAI (Bearer)."
+
+msgid "Google Gemini"
+msgstr "Google Gemini"
+
+msgid "Google AI Studio key and model below. No endpoint URL — requests use Google’s Generative Language API."
+msgstr "Chave Google AI Studio e modelo abaixo. Sem URL de endpoint — os pedidos usam a Generative Language API da Google."
+
+msgid "Default (gemini-2.5-flash)"
+msgstr "Padrão (gemini-2.5-flash)"
+
+msgid "Not used: the plugin calls generativelanguage.googleapis.com (Google AI Studio / API key)."
+msgstr "Não usado: o plugin chama generativelanguage.googleapis.com (Google AI Studio / chave API)."
+
+msgid "Pick a model from the list (Google AI Studio)."
+msgstr "Escolha um modelo da lista (Google AI Studio)."
+
+msgid "Endpoint: not used — URL is fixed for the standard Google Generative Language API; this box is ignored."
+msgstr "Endpoint: não usado — o URL é fixo para a Generative Language API padrão da Google; esta caixa é ignorada."
+
+msgid "Model: optional — defaults to gemini-2.5-flash; preview IDs may change — check Google AI model docs."
+msgstr "Modelo: opcional — por defeito gemini-2.5-flash; IDs de pré-visualização podem mudar — veja a documentação de modelos Google AI."
+
+msgid "API key: Google AI Studio key (sent as query parameter key=)."
+msgstr "Chave API: chave Google AI Studio (enviada como parâmetro key=)."
+
+msgid "Ticket"
+msgstr "Chamado"
+
+msgid "Follow-up"
+msgstr "Acompanhamento"
+
+msgid "Frustrated"
+msgstr "Frustrado"
+
+msgid "Neutral"
+msgstr "Neutro"
+
+msgid "Satisfied"
+msgstr "Satisfeito"

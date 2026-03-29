@@ -26,6 +26,8 @@ if (!$_glpi_loaded) {
     exit;
 }
 
+require_once dirname(__DIR__) . '/inc/ajax_guard.inc.php';
+
 header('Content-Type: application/json; charset=UTF-8');
 Session::checkLoginUser();
 
@@ -35,9 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-Session::checkCSRF($_POST);
+$post = plugin_glpicopilot_merged_post();
 
-$tickets_id = (int) ($_POST['tickets_id'] ?? 0);
+$tickets_id = (int) ($post['tickets_id'] ?? 0);
 if ($tickets_id <= 0) {
     http_response_code(400);
     echo json_encode(['ok' => false, 'error' => 'invalid_ticket']);

@@ -140,34 +140,34 @@ function plugin_glpicopilot_echo_summarize_ui(Ticket $item, bool $wrap_in_li): v
     $id          = (int) $item->getID();
     $ajax_url    = $CFG_GLPI['root_doc'] . '/plugins/glpicopilot/ajax/summary.php';
 
-    $label_short = htmlspecialchars(__('Resumir chamado', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
-    $label_tiny  = htmlspecialchars(__('Resumir', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
-    $label_load  = htmlspecialchars(__('Gerando resumo…', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
-    $label_err   = htmlspecialchars(__('Não foi possível gerar o resumo.', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
-    $label_cfg   = htmlspecialchars(__('Plugin não configurado (URL / chave de API).', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
+    $label_short = htmlspecialchars(__('Summarize ticket', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
+    $label_tiny  = htmlspecialchars(__('Summarize', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
+    $label_load  = htmlspecialchars(__('Generating summary…', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
+    $label_err   = htmlspecialchars(__('Could not generate the summary.', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
+    $label_cfg   = htmlspecialchars(__('Plugin not configured (URL / API key).', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
 
-    $lbl_sla   = htmlspecialchars(__('Analisar SLA', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
-    $lbl_diag  = htmlspecialchars(__('Diagnóstico', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
-    $lbl_mail  = htmlspecialchars(__('E-mail encerramento', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
-    $lbl_sent  = htmlspecialchars(__('Sentimento', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
-    $lbl_cerr  = htmlspecialchars(__('Copilot: erro ao contactar a IA.', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
-    $lbl_pend  = htmlspecialchars(__('E-mail de encerramento (gerado ao resolver)', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
-    $lbl_close = htmlspecialchars(__('Fechar', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
+    $lbl_sla   = htmlspecialchars(__('Analyze SLA', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
+    $lbl_diag  = htmlspecialchars(__('Diagnosis', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
+    $lbl_mail  = htmlspecialchars(__('Closing email', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
+    $lbl_sent  = htmlspecialchars(__('Sentiment', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
+    $lbl_cerr  = htmlspecialchars(__('Copilot: error contacting the AI.', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
+    $lbl_pend  = htmlspecialchars(__('Closing email (generated when resolving)', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
+    $lbl_close = htmlspecialchars(__('Close', 'glpicopilot'), ENT_QUOTES, 'UTF-8');
 
     $pending_email = class_exists('PluginGlpicopilotKb', false)
         ? PluginGlpicopilotKb::consumePendingClosingEmail($id)
         : null;
     $pending_js     = json_encode($pending_email ?? '', JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
     $copilot_url_js = json_encode($CFG_GLPI['root_doc'] . '/plugins/glpicopilot/ajax/copilot.php', JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_UNESCAPED_SLASHES);
-    $label_load_js  = json_encode(__('Gerando resumo…', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
-    $label_err_js   = json_encode(__('Não foi possível gerar o resumo.', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
-    $label_cfg_js   = json_encode(__('Plugin não configurado (URL / chave de API).', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
-    $lbl_cerr_js    = json_encode(__('Copilot: erro ao contactar a IA.', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
-    $lbl_pend_js    = json_encode(__('E-mail de encerramento (gerado ao resolver)', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
-    $label_copy_js  = json_encode(__('Copiar', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
-    $label_copied_js = json_encode(__('Copiado!', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
+    $label_load_js  = json_encode(__('Generating summary…', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
+    $label_err_js   = json_encode(__('Could not generate the summary.', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
+    $label_cfg_js   = json_encode(__('Plugin not configured (URL / API key).', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
+    $lbl_cerr_js    = json_encode(__('Copilot: error contacting the AI.', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
+    $lbl_pend_js    = json_encode(__('Closing email (generated when resolving)', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
+    $label_copy_js  = json_encode(__('Copy', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
+    $label_copied_js = json_encode(__('Copied!', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
     $lbl_stack_sla_js  = json_encode(__('SLA', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
-    $lbl_stack_mail_js = json_encode(__('E-mail', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
+    $lbl_stack_mail_js = json_encode(__('Email', 'glpicopilot'), JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP);
 
     // ---- CSS inline: compacto (como os outros) + violeta (cor ainda não usada na barra) ----
     echo <<<CSS
@@ -361,7 +361,7 @@ function plugin_glpicopilot_echo_summarize_ui(Ticket $item, bool $wrap_in_li): v
     }
 
     echo '<div id="glpicopilot-diag-backdrop" aria-hidden="true"></div>';
-    echo '<aside id="glpicopilot-diag-panel" aria-label="Diagnosis">'
+    echo '<aside id="glpicopilot-diag-panel" aria-label="' . $lbl_diag . '">'
         . '<div class="d-flex justify-content-between align-items-center mb-2">'
         . '<strong>' . $lbl_diag . '</strong>'
         . '<button type="button" class="btn-close" id="glpicopilot-diag-close" aria-label="' . $lbl_close . '"></button>'
@@ -387,9 +387,10 @@ function plugin_glpicopilot_echo_summarize_ui(Ticket $item, bool $wrap_in_li): v
     echo <<<'JS'
     function getCsrf() {
         var sel = [
+            'meta[name="glpi-csrf-token"]',
             'input[name="_glpi_csrf_token"]',
             'input[name="glpi_csrf_token"]',
-            'meta[name="glpi-csrf-token"]'
+            'input[name="csrf_token"]'
         ];
         for (var i = 0; i < sel.length; i++) {
             var el = document.querySelector(sel[i]);
@@ -463,15 +464,19 @@ function plugin_glpicopilot_echo_summarize_ui(Ticket $item, bool $wrap_in_li): v
     function postCopilot(action, cb) {
         var token = getCsrf();
         if (!token) { cb(null, 'csrf'); return; }
-        var fd = new FormData();
-        fd.append('_glpi_csrf_token', token);
-        fd.append('tickets_id', String(TICKET_ID));
-        fd.append('action', action);
+        var body = new URLSearchParams();
+        body.set('_glpi_csrf_token', token);
+        body.set('tickets_id', String(TICKET_ID));
+        body.set('action', action);
         fetch(COPILOT_URL, {
             method: 'POST',
-            body: fd,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-Glpi-Csrf-Token': token,
+            },
+            body: body.toString(),
             credentials: 'same-origin',
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
         })
         .then(function(r) { return r.json().then(function(d) { return {ok: r.ok, d: d}; }); })
         .then(function(res) {
@@ -533,15 +538,19 @@ function plugin_glpicopilot_echo_summarize_ui(Ticket $item, bool $wrap_in_li): v
                 btn.disabled = true;
                 show(out, 'alert-secondary', LABEL_LOAD);
 
-                var fd = new FormData();
-                fd.append('_glpi_csrf_token', token);
-                fd.append('tickets_id', TICKET_ID);
+                var body = new URLSearchParams();
+                body.set('_glpi_csrf_token', token);
+                body.set('tickets_id', String(TICKET_ID));
 
                 fetch(AJAX_URL, {
                     method: 'POST',
-                    body: fd,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-Glpi-Csrf-Token': token,
+                    },
+                    body: body.toString(),
                     credentials: 'same-origin',
-                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
                 })
                 .then(function(r) { return r.json().then(function(d) { return {ok: r.ok, d: d}; }); })
                 .then(function(res) {
@@ -660,19 +669,25 @@ function plugin_glpicopilot_install(): bool
         $DB->doQuery(
             "CREATE TABLE `glpi_plugin_glpicopilot_config` (
                 `id` int unsigned NOT NULL AUTO_INCREMENT,
+                `name` varchar(255) NOT NULL DEFAULT '',
+                `is_active` tinyint NOT NULL DEFAULT 0,
                 `provider` varchar(32) NOT NULL DEFAULT 'azure_openai',
                 `endpoint_url` text DEFAULT NULL,
                 `api_key` text DEFAULT NULL,
                 `model` varchar(128) DEFAULT NULL,
                 `allowed_entities` text DEFAULT NULL,
-                PRIMARY KEY (`id`)
+                `date_creation` timestamp NULL DEFAULT NULL,
+                `date_mod` timestamp NULL DEFAULT NULL,
+                PRIMARY KEY (`id`),
+                KEY `is_active` (`is_active`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC"
         );
 
         $DB->insert(
             'glpi_plugin_glpicopilot_config',
             [
-                'id'           => 1,
+                'name'         => 'Principal',
+                'is_active'    => 1,
                 'provider'     => 'azure_openai',
                 'endpoint_url' => null,
                 'api_key'      => null,
@@ -701,9 +716,34 @@ function plugin_glpicopilot_migrate_config_columns(): void
     }
 
     if (method_exists($DB, 'fieldExists')) {
+        if (!$DB->fieldExists($t, 'name')) {
+            $DB->doQuery(
+                "ALTER TABLE `$t` ADD COLUMN `name` varchar(255) NOT NULL DEFAULT '' AFTER `id`"
+            );
+            $DB->doQuery(
+                "UPDATE `$t` SET `name` = 'Principal' WHERE `name` = '' OR `name` IS NULL"
+            );
+        }
+        if (!$DB->fieldExists($t, 'is_active')) {
+            $DB->doQuery(
+                "ALTER TABLE `$t` ADD COLUMN `is_active` tinyint NOT NULL DEFAULT 0 AFTER `name`, ADD KEY `is_active` (`is_active`)"
+            );
+            $DB->doQuery("UPDATE `$t` SET `is_active` = 0");
+            $DB->doQuery("UPDATE `$t` SET `is_active` = 1 ORDER BY `id` ASC LIMIT 1");
+        }
+        if (!$DB->fieldExists($t, 'date_creation')) {
+            $DB->doQuery(
+                "ALTER TABLE `$t` ADD COLUMN `date_creation` timestamp NULL DEFAULT NULL"
+            );
+        }
+        if (!$DB->fieldExists($t, 'date_mod')) {
+            $DB->doQuery(
+                "ALTER TABLE `$t` ADD COLUMN `date_mod` timestamp NULL DEFAULT NULL"
+            );
+        }
         if (!$DB->fieldExists($t, 'provider')) {
             $DB->doQuery(
-                "ALTER TABLE `$t` ADD COLUMN `provider` varchar(32) NOT NULL DEFAULT 'azure_openai' AFTER `id`"
+                "ALTER TABLE `$t` ADD COLUMN `provider` varchar(32) NOT NULL DEFAULT 'azure_openai' AFTER `is_active`"
             );
         }
         if (!$DB->fieldExists($t, 'model')) {
@@ -715,6 +755,15 @@ function plugin_glpicopilot_migrate_config_columns(): void
             $DB->doQuery(
                 "ALTER TABLE `$t` ADD COLUMN `allowed_entities` text DEFAULT NULL AFTER `model`"
             );
+        }
+
+        $has_active = false;
+        foreach ($DB->request(['FROM' => $t, 'WHERE' => ['is_active' => 1], 'LIMIT' => 1]) as $_row) {
+            $has_active = true;
+            break;
+        }
+        if (!$has_active) {
+            $DB->doQuery("UPDATE `$t` SET `is_active` = 1 ORDER BY `id` ASC LIMIT 1");
         }
 
         return;

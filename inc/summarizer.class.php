@@ -106,7 +106,7 @@ class PluginGlpicopilotSummarizer
 
             case 'openai':
                 $base = $endpoint !== '' ? rtrim($endpoint, '/') : 'https://api.openai.com/v1';
-                $m    = $model !== '' ? $model : 'gpt-4o-mini';
+                $m    = $model !== '' ? $model : 'gpt-5.4-mini';
 
                 return self::chatCompletionBearer($base . '/chat/completions', $apiKey, $m, $user_text, $system_prompt, $max_out_tokens);
 
@@ -118,12 +118,12 @@ class PluginGlpicopilotSummarizer
 
             case 'grok':
                 $base = $endpoint !== '' ? rtrim($endpoint, '/') : 'https://api.x.ai/v1';
-                $m    = $model !== '' ? $model : 'grok-2-latest';
+                $m    = $model !== '' ? $model : 'grok-4-1-fast-non-reasoning';
 
                 return self::chatCompletionBearer($base . '/chat/completions', $apiKey, $m, $user_text, $system_prompt, $max_out_tokens);
 
             case 'gemini':
-                $m = $model !== '' ? $model : 'gemini-1.5-flash';
+                $m = $model !== '' ? $model : 'gemini-2.5-flash';
 
                 return self::chatCompletionGemini($m, $apiKey, $user_text, $system_prompt, $max_out_tokens);
 

@@ -41,9 +41,10 @@
 
     function getCsrf() {
         var sel = [
+            'meta[name="glpi-csrf-token"]',
             'input[name="_glpi_csrf_token"]',
             'input[name="glpi_csrf_token"]',
-            'meta[name="glpi-csrf-token"]'
+            'input[name="csrf_token"]'
         ];
         for (var i = 0; i < sel.length; i++) {
             var el = document.querySelector(sel[i]);
@@ -112,7 +113,7 @@
         btn.type = 'button';
         btn.id = 'glpicopilot-btn';
         btn.className = 'btn btn-outline-secondary btn-sm glpicopilot-btn';
-        btn.innerHTML = '\u2728 Resumir chamado';
+        btn.innerHTML = '\u2728 Summarize ticket';
 
         // Caixa de saída
         var out = document.createElement('div');
@@ -135,20 +136,24 @@
         // Ação do botão
         btn.addEventListener('click', function () {
             var token = getCsrf();
-            if (!token) { show(out, 'alert-warning', 'Erro: CSRF token não encontrado.'); return; }
+            if (!token) { show(out, 'alert-warning', 'Error: CSRF token not found.'); return; }
 
             btn.disabled = true;
-            show(out, 'alert-secondary', 'Gerando resumo\u2026');
+            show(out, 'alert-secondary', 'Generating summary\u2026');
 
-            var fd = new FormData();
-            fd.append('_glpi_csrf_token', token);
-            fd.append('tickets_id', tid);
+            var body = new URLSearchParams();
+            body.set('_glpi_csrf_token', token);
+            body.set('tickets_id', String(tid));
 
             fetch(ajaxUrl, {
                 method: 'POST',
-                body: fd,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-Glpi-Csrf-Token': token,
+                },
+                body: body.toString(),
                 credentials: 'same-origin',
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
             })
                 .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
                 .then(function (res) {
@@ -156,14 +161,14 @@
                     if (res.d && res.d.ok && res.d.summary) {
                         show(out, 'alert-success', res.d.summary);
                     } else if (res.d && res.d.error === 'plugin_not_configured') {
-                        show(out, 'alert-warning', 'Plugin n\u00e3o configurado (URL / chave de API).');
+                        show(out, 'alert-warning', 'Plugin not configured (URL / API key).');
                     } else {
-                        show(out, 'alert-warning', 'N\u00e3o foi poss\u00edvel gerar o resumo.');
+                        show(out, 'alert-warning', 'Could not generate the summary.');
                     }
                 })
                 .catch(function () {
                     btn.disabled = false;
-                    show(out, 'alert-warning', 'N\u00e3o foi poss\u00edvel gerar o resumo.');
+                    show(out, 'alert-warning', 'Could not generate the summary.');
                 });
         });
 
